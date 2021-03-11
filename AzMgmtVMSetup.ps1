@@ -125,7 +125,7 @@ Set-ExecutionPolicy Bypass -Scope Process -Force;
 [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072;
 Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
 
-# $cred = New-Object -TypeName pscredential -ArgumentList 'localadmin',(ConvertTo-SecureString -String 'securePa$$w0rd' -AsPlainText -Force)
+$cred = New-Object -TypeName pscredential -ArgumentList 'localadmin',(ConvertTo-SecureString -String 'securePa$$w0rd' -AsPlainText -Force)
 #endregion Preparation
 
 #
@@ -155,6 +155,5 @@ Get-Job | Wait-Job  #>
 
 # VSCode Extension Installation
 
-Invoke-Command -Scriptblock { & 'C:\Program Files\Microsoft VS Code\bin\code.cmd' --install-extension ms-vscode.powershell } -ErrorAction SilentlyContinue
-Invoke-Command -Scriptblock { & 'C:\Program Files\Microsoft VS Code\bin\code.cmd' --install-extension msazurermtools.azurerm-vscode-tools } -ErrorAction SilentlyContinue
-Invoke-Command -Scriptblock { & 'C:\Program Files\Microsoft VS Code\bin\code.cmd' --install-extension ms-vscode.azurecli } -ErrorAction SilentlyContinue
+Invoke-WebRequest -uri 'https://github.com/distcode/AzMgmtVMScript/blob/Version2/DISTAzTools.zip?raw=true' -OutFile "$env:TEMP\DISTAzTools.zip"
+Expand-Archive -Path "$env:temp\DISTAzTools.zip" -DestinationPath 'C:\Program Files\PowerShell\7\Modules'
