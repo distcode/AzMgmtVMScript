@@ -154,21 +154,7 @@ choco install az.powershell googlechrome microsoft-edge vscode git sysinternals 
 Get-Job | Wait-Job  #>
 
 # VSCode Extension Installation
-try {
-    Invoke-Command -Scriptblock { & 'C:\Program Files\Microsoft VS Code\bin\code.cmd' --install-extension ms-vscode.powershell } -ErrorAction Stop
-}
-catch {
-    $Error.Clear()
-}
-try {
-    Invoke-Command -Scriptblock { & 'C:\Program Files\Microsoft VS Code\bin\code.cmd' --install-extension msazurermtools.azurerm-vscode-tools } -ErrorAction Stop
-}
-catch {
-    $Error.Clear()
-}
-try {
-    Invoke-Command -Scriptblock { & 'C:\Program Files\Microsoft VS Code\bin\code.cmd' --install-extension ms-vscode.azurecli } -ErrorAction Stop
-}
-catch {
-    $Error.Clear()
-}
+
+Invoke-Command -Scriptblock { & 'C:\Program Files\Microsoft VS Code\bin\code.cmd' --install-extension ms-vscode.powershell } -ErrorAction SilentlyContinue
+Invoke-Command -Scriptblock { & 'C:\Program Files\Microsoft VS Code\bin\code.cmd' --install-extension msazurermtools.azurerm-vscode-tools } -ErrorAction SilentlyContinue
+Invoke-Command -Scriptblock { & 'C:\Program Files\Microsoft VS Code\bin\code.cmd' --install-extension ms-vscode.azurecli } -ErrorAction SilentlyContinue
