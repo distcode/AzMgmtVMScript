@@ -14,8 +14,8 @@ This script installs several adminstration tools and a PS7 module in an Azure VM
 5. Visual Studio Code
 6. Google Chrome
 7. Microsoft Edge
-8. git
-9. sysinternals
+8. Mozilla Firefox
+9. git
 
 Most of them are installed via Chocolatey, which remains on VM after running the script. For additional information about the module read further below.
 
