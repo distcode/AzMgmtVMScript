@@ -69,6 +69,19 @@ $funcEdge = { function Install-distEdge {
             Write-Eventlog -Message 'Error Installing Edge ...' -Logname PSScript -Source CustomScriptExtension -EventID 9 -EntryType Information
         }
     } }
+$funcFirefox = { function Install-distFirefox {
+        #
+        # Install Firefox
+        #
+        try {
+            Write-Eventlog -Message 'Installing Firefox ...' -Logname PSScript -Source CustomScriptExtension -EventID 7 -EntryType Information
+            powershell.exe -command { choco install firefox -y  }
+        }
+        catch {
+            Out-Host -InputObject 'Error Firefox installation'
+            Write-Eventlog -Message 'Error Installing Firefox ...' -Logname PSScript -Source CustomScriptExtension -EventID 9 -EntryType Information
+        }
+    } }
 $funcVSCode = { function Install-distVSCode {
         #
         # Install VSCode
@@ -124,7 +137,7 @@ Set-ExecutionPolicy Bypass -Scope Process -Force;
 [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072;
 Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
 
-$cred = New-Object -TypeName pscredential -ArgumentList 'localadmin',(ConvertTo-SecureString -String 'securePa$$w0rd' -AsPlainText -Force)
+# $cred = New-Object -TypeName pscredential -ArgumentList 'localadmin',(ConvertTo-SecureString -String 'securePa$$w0rd' -AsPlainText -Force)
 #endregion Preparation
 
 #
@@ -138,15 +151,19 @@ Start-Job -ScriptBlock { Install-distGIT } -InitializationScript $funcGIT
 Start-Job -ScriptBlock { Install-distStorageExplorer } -InitializationScript $funcStorageExplorer
 Get-Job | Wait-Job
 
-Start-Job -ScriptBlock { Install-distChrome } -InitializationScript $funcChrome -Credential $cred
+Start-Job -ScriptBlock { Install-distChrome } -InitializationScript $funcChrome
 Get-Job | Wait-Job
 
-Start-Job -ScriptBlock { Install-distEdge } -InitializationScript $funcEdge -Credential $cred
+Start-Job -ScriptBlock { Install-distEdge } -InitializationScript $funcEdge
 Get-Job | Wait-Job
 
 Start-Job -ScriptBlock { Install-distAzCLI } -InitializationScript $funcAzCLI
 Get-Job | Wait-Job
 
-# VSCode Extension Installation
+Start-Job -ScriptBlock { Install-distAzFirefox } -InitializationScript $funcFirefox
+Get-Job | Wait-Job
+
+
+# Module Installation
 Invoke-WebRequest -uri 'https://github.com/distcode/AzMgmtVMScript/blob/Version2/DISTAzTools.zip?raw=true' -OutFile "$env:TEMP\DISTAzTools.zip"
 Expand-Archive -Path "$env:temp\DISTAzTools.zip" -DestinationPath 'C:\Program Files\PowerShell\7\Modules'
