@@ -160,7 +160,7 @@ Get-Job | Wait-Job
 Start-Job -ScriptBlock { Install-distAzCLI } -InitializationScript $funcAzCLI
 Get-Job | Wait-Job
 
-Start-Job -ScriptBlock { Install-distAzFirefox } -InitializationScript $funcFirefox
+Start-Job -ScriptBlock { Install-distFirefox } -InitializationScript $funcFirefox
 Get-Job | Wait-Job
 
 
