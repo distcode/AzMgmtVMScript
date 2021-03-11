@@ -148,12 +148,6 @@ Get-Job | Wait-Job
 Start-Job -ScriptBlock { Install-distAzCLI } -InitializationScript $funcAzCLI
 Get-Job | Wait-Job
 
-<# Start-Job -ScriptBlock { Install-distAzCLI } -InitializationScript $funcAzCLI
-choco install powershell-core --install-arguments='"ADD_EXPLORER_CONTEXT_MENU_OPENPOWERSHELL=1 REGISTER_MANIFEST=1 ENABLE_PSREMOTING=1"' -y
-choco install az.powershell googlechrome microsoft-edge vscode git sysinternals microsoftazurestorageexplorer -y
-Get-Job | Wait-Job  #>
-
 # VSCode Extension Installation
-
 Invoke-WebRequest -uri 'https://github.com/distcode/AzMgmtVMScript/blob/Version2/DISTAzTools.zip?raw=true' -OutFile "$env:TEMP\DISTAzTools.zip"
 Expand-Archive -Path "$env:temp\DISTAzTools.zip" -DestinationPath 'C:\Program Files\PowerShell\7\Modules'
