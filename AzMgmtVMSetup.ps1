@@ -49,7 +49,7 @@ $funcChrome = { function Install-distChrome {
 
         try {
             Write-Eventlog -Message 'Installing Chrome ...' -Logname PSScript -Source CustomScriptExtension -EventID 7 -EntryType Information
-            powershell.exe -command { choco install googlechrome  -y *>&1 c:\chromeinst.txt }
+            powershell.exe -command { choco install googlechrome  -y }
         }
         catch {
             Out-Host -InputObject 'Error Crome installation'
@@ -62,7 +62,7 @@ $funcEdge = { function Install-distEdge {
         #
         try {
             Write-Eventlog -Message 'Installing Edge ...' -Logname PSScript -Source CustomScriptExtension -EventID 7 -EntryType Information
-            powershell.exe -command { choco install microsoft-edge -y *>&1 c:\edgeinst.txt }
+            powershell.exe -command { choco install microsoft-edge -y  }
         }
         catch {
             Out-Host -InputObject 'Error Edge installation'
@@ -89,7 +89,6 @@ $funcGIT = { function Install-distGIT {
         try {
             Write-Eventlog -Message 'Installing Git ...' -Logname PSScript -Source CustomScriptExtension -EventID 7 -EntryType Information
             powershell.exe -command { choco install git -y }
-            powershell.exe -command { choco install Sysinternals -y }
         }
         catch {
             Out-Host -InputObject 'Error Git Installation'
