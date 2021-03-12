@@ -4,8 +4,9 @@
 
 function Install-DISTAzAllTools {
 
-    if ( -not (Test-Path 'C:\ProgramData\chocolatey\choco.exe') ) {
+    if ( -not ( Test-DISTAzChocolatey ) ) {
         Write-Host 'Run Install-DISTAzChocolatey first to get chocolatey.' -ForegroundColor Cyan
+        return
     }
 
     Install-DISTAzPowerShellCore
@@ -16,5 +17,5 @@ function Install-DISTAzAllTools {
     Install-DISTAzBrowsers -All
     Install-DISTAzStorageExplorer
     Install-DISTAzGit
-    
+
 }

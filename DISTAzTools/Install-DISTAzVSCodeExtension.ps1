@@ -3,7 +3,7 @@ function Install-DISTAzVSCodeExtension {
     param (
         [String[]]$AdditionalExtensions = @()
     )
-    
+
     $ErrorActionPreference = 'SilentlyContinue'
     
     $extensions = @('ms-vscode.powershell', 'msazurermtools.azurerm-vscode-tools', 'ms-vscode.azurecli') + $AdditionalExtensions

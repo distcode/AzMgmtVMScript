@@ -22,8 +22,9 @@ function Install-DISTAzBrowsers {
         $All
     )
     
-    if ( -not (Test-Path 'C:\ProgramData\chocolatey\choco.exe') ) {
+    if ( -not ( Test-DISTAzChocolatey ) ) {
         Write-Host 'Run Install-DISTAzChocolatey first to get chocolatey.' -ForegroundColor Cyan
+        return
     }
 
     if ( $All ) {
@@ -33,14 +34,14 @@ function Install-DISTAzBrowsers {
     }
 
     if ( $Chrome ) {
-        choco install googlechrome -y
+        choco install googlechrome -y --force
     }
 
     if ( $Edge ) {
-        choco install microsoft-edge -y
+        choco install microsoft-edge -y --force
     }
 
     if ( $Firefox ) {
-        choco install firefox -y
+        choco install firefox -y --force
     }
 }

@@ -3,9 +3,11 @@
 #
 
 function Install-DISTAzVSCode {
-    if ( -not (Test-Path 'C:\ProgramData\chocolatey\choco.exe') ) {
+    
+    if ( -not ( Test-DISTAzChocolatey ) ) {
         Write-Host 'Run Install-DISTAzChocolatey first to get chocolatey.' -ForegroundColor Cyan
+        return
     }
 
-    choco install vscode -y
+    choco install vscode -y --force
 }
