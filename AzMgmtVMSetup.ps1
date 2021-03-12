@@ -165,5 +165,5 @@ Get-Job | Wait-Job
 
 
 # Module Installation
-Invoke-WebRequest -uri 'https://github.com/distcode/AzMgmtVMScript/blob/Version2/DISTAzTools.zip?raw=true' -OutFile "$env:TEMP\DISTAzTools.zip"
+Invoke-WebRequest -uri 'https://github.com/distcode/AzMgmtVMScript/blob/master/DISTAzTools.zip?raw=true' -OutFile "$env:TEMP\DISTAzTools.zip"
 Expand-Archive -Path "$env:temp\DISTAzTools.zip" -DestinationPath 'C:\Program Files\PowerShell\7\Modules'
