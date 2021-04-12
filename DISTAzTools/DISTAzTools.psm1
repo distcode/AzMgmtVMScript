@@ -2,7 +2,7 @@
 #
 #
 
-- $PSScriptRoot\Test-DISTAzChocolatey.ps1
+. $PSScriptRoot\Test-DISTAzChocolatey.ps1
 . $PSScriptRoot\Get-DISTAzVMPubIP.ps1
 . $PSScriptRoot\Install-DISTAzAllTools.ps1
 . $PSScriptRoot\Install-DISTAzChocolatey.ps1
